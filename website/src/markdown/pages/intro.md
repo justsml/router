@@ -22,13 +22,13 @@ Routers select a child to render based on the child's path. The children are jus
 
 ```js
 import React from "react"
-import { render } from "react-dom"
+import ReactDOM from "react-dom"
 import { Router, Link } from "@reach/router"
 
 let Home = () => <div>Home</div>
 let Dash = () => <div>Dash</div>
 
-render(
+ReactDOM.render(
   <Router>
     <Home path="/" />
     <Dash path="dashboard" />
@@ -53,7 +53,7 @@ let Home = () => (
 
 let Dash = () => <div>Dash</div>
 
-render(
+ReactDOM.render(
   <Router>
     <Home path="/" />
     <Dash path="dashboard" />
@@ -68,7 +68,7 @@ If you need to parse the data out of the URL, use a dynamic segment--they start 
 ```jsx
 // at url "/invoice/23"
 
-render(
+ReactDOM.render(
   <Router>
     <Home path="/" />
     <Invoice path="invoice/:invoiceId" />
@@ -93,7 +93,7 @@ It's the same as rendering the component directly.
 Even though two paths might be ambiguous--like "/:invoiceId" and "/invoices"--Router ranks the paths and renders the one that makes the most sense.
 
 ```jsx
-render(
+ReactDOM.render(
   <Router>
     <Home path="/" />
     <Invoice path=":invoiceId" />
@@ -117,7 +117,7 @@ const Dash = ({ children }) => (
   </div>
 )
 
-render(
+ReactDOM.render(
   <Router>
     <Home path="/" />
     <Dash path="dashboard">
@@ -149,7 +149,7 @@ const Main = ({ children }) => (
   </div>
 )
 
-render(
+ReactDOM.render(
   <Router>
     <Main path="/">
       <Invoices path="invoices" />
@@ -164,7 +164,7 @@ render(
 You can link to relative paths. The relativity comes from the path of the component that rendered the Link. These two links will link to "/dashboard/invoices" and "/dashboard/team" because they're rendered inside of `<Dash/>`. This is really nice when you change a parent's URL, or move the components around.
 
 ```jsx
-render(
+ReactDOM.render(
   <Router>
     <Home path="/" />
     <Dash path="dashboard">
@@ -197,7 +197,7 @@ a folder on a static server. If this app was at "/dashboard" we'd see this
 component tree: `<Dash><DashboardGraphs/></Dash>`
 
 ```jsx
-render(
+ReactDOM.render(
   <Router>
     <Home path="/" />
     <Dash path="dashboard">
@@ -217,7 +217,7 @@ const NotFound = () => (
   <div>Sorry, nothing here.</div>
 )
 
-render(
+ReactDOM.render(
   <Router>
     <Home path="/" />
     <Dash path="dashboard">
@@ -238,7 +238,7 @@ then ignores the rest.
 Just makes sure to mark the non-primary router(s) as `primary={false}` so that it doesn't manage the focus on those components.
 
 ```jsx
-render(
+ReactDOM.render(
   <div>
     <Sidebar>
       <Router primary={false}>
@@ -268,7 +268,7 @@ render(
 You can render a router anywhere you want in your app, even deep inside another Router, just makes sure to use a splat (`*`) on the parent component so nested paths match it.
 
 ```jsx
-render(
+ReactDOM.render(
   <Router>
     <Home path="/" />
     <Dash path="dashboard/*" />
